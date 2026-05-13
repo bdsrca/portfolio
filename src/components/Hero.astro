@@ -134,7 +134,7 @@ import { siteConfig } from "../config";
       <h2
         class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
       >
-        Hello! 👋
+        Hello.
       </h2>
       <h1
         class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
@@ -148,6 +148,13 @@ import { siteConfig } from "../config";
       >
         {siteConfig.title}
       </p>
+      {
+        siteConfig.heroDescription && (
+          <p class="mt-4 max-w-4xl text-pretty text-sm sm:text-base md:text-lg/8 text-gray-600 animate-fade-in animation-delay-600">
+            {siteConfig.heroDescription}
+          </p>
+        )
+      }
     </div>
   </div>
   <div
