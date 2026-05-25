@@ -1,104 +1,727 @@
 ---
 import { siteConfig } from "../config";
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+
+const showcaseIntro =
+  "Selected R&D systems, engineering case studies, and full-stack experiments that turn repeated workflow friction into safer automation, AI-assisted operations, legacy modernization, and product-ready control patterns.";
+
+const showcaseImageMap = {
+  localAiApi: "/showcases/generated/cmms-local-ai-api-console-cover.png",
+  automationRules: "/showcases/generated/cmms-automation-rules-cover.png",
+  megamationUpgrade:
+    "/showcases/generated/megamation-basic-upgrade-workstation-cover.png",
+  knowledgeBase: "/showcases/generated/cmms-knowledge-base-cover-new.png",
+  analyticsExport: "/showcases/generated/cmms-analytics-export-api-cover.png",
+  mobilePwa: "/showcases/generated/cmms-mobile-pwa-architecture-cover.png",
+  agenticEam: "/showcases/generated/cmms-agentic-eam-cover.png",
+  aiOperations:
+    "/showcases/generated/cmms-ai-operations-console-roadmap-cover.png",
+  studentMarketplace:
+    "/showcases/generated/student-help-student-marketplace-cover.png",
+};
+
+const showcaseTiers = [
+  {
+    title: "Featured R&D Systems",
+    accent: "blue",
+    description:
+      "Core projects that best represent my R&D direction: CMMS modernization, safe AI-assisted workflows, automation governance, and legacy system upgrade tooling.",
+    projects: [
+      {
+        category: "Featured R&D System",
+        title: "CMMS Local AI API Management Console",
+        description:
+          "A private local CMMS AI API console that keeps prompts, test data, and token use under my own control.",
+        buildLabel: "Built a private control plane",
+        built:
+          "Runs text and voice intake through local Ollama models, then checks the result against environment code lists, output contracts, saved tests, logs, and promotion gates.",
+        valueLabel: "Keeps AI testing private and flexible",
+        rdValue:
+          "Teams can experiment without sending CMMS data away, worrying about token limits, or trusting raw model output as final.",
+        fields: [
+          {
+            label: "Problem",
+            text: "AI workflow experiments need realistic CMMS constraints, but production data, token cost, and raw model output are risky places to start.",
+          },
+          {
+            label: "Technical Approach",
+            text: "A local control plane runs intake through Ollama, validates outputs against code lists and contracts, saves tests and logs, and promotes only reviewed patterns.",
+          },
+          {
+            label: "Why It Matters",
+            text: "R&D can test AI-assisted workflow ideas privately while support and implementation teams keep clear evidence of what was tested.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It lets DirectLine-adjacent ideas be explored beside the core system, using legacy rules as guardrails instead of replacing the system.",
+          },
+        ],
+        tags: [
+          "Private AI",
+          "Local LLM",
+          "CMMS API",
+          "Validation Rules",
+          "Unlimited Tokens",
+        ],
+        cover: showcaseImageMap.localAiApi,
+        link: "https://github.com/bdsrca/cmms-api",
+        diagram: [
+          "Natural Language Request",
+          "LLM Extraction",
+          "Output Contract",
+          "Environment Validation",
+          "Promotion/Test Gate",
+          "Structured API Response",
+        ],
+      },
+      {
+        category: "Featured R&D System",
+        title: "CMMS Automation Rules",
+        description:
+          "A CMMS rule engine that previews alerts, reports, notifications, and work-order actions before anything runs live.",
+        buildLabel: "Previewed automation before rollout",
+        built:
+          "Starts rules disabled, shows dry-run results, controls notifications, and records every decision in an audit trail.",
+        valueLabel: "Turns automation into a safe workflow",
+        rdValue:
+          "Users can see what a rule would do before it touches live alerts, reports, or work orders.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Operational automation can become noisy or dangerous when rules move directly from idea to live alerts, reports, or work-order actions.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Rules start disabled, run in dry-run mode, preview notifications and actions, and record decisions in an audit trail before rollout.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Users, support, and implementation teams can understand automation behavior before trusting it in daily maintenance work.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It adds controlled automation patterns around established CMMS workflows without forcing risky changes into the production core.",
+          },
+        ],
+        tags: [
+          "Automation Rules",
+          "Dry Run",
+          "Notifications",
+          "Audit Log",
+          "Safe Rollout",
+        ],
+        cover: showcaseImageMap.automationRules,
+        link: "https://github.com/bdsrca/cmms-automation",
+        diagram: [
+          "Operational Event",
+          "Rule Evaluation",
+          "Dry Run",
+          "Alert / Report / Action",
+          "Audit Log",
+        ],
+      },
+      {
+        category: "Featured R&D System",
+        title: "Megamation BASIC+ Upgrade Workstation",
+        description:
+          "A controlled review workflow for legacy BASIC+ upgrade work, designed to reduce blind merges and improve upgrade confidence.",
+        buildLabel: "Structured the upgrade review",
+        built:
+          "Guides old code, new code, validation notes, and export packaging through one review workstation.",
+        valueLabel: "Reduces blind upgrade risk",
+        rdValue:
+          "Reviewers can understand what changed, catch issues earlier, and ship upgrade packages with more confidence.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Legacy BASIC+ upgrade work can be hard to review when changes are scattered, warnings are implicit, and final packaging depends on manual discipline.",
+          },
+          {
+            label: "Technical Approach",
+            text: "A local workstation compares old code, new code, and final drafts side by side, tracks validation notes, and exports only reviewed packages.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Developers get a safer review workflow, and R&D gets a repeatable pattern for upgrade confidence and audit-ready handoff.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It helps BASIC+ continue evolving by making upgrade work more controlled, visible, and maintainable.",
+          },
+        ],
+        tags: [
+          "Legacy Modernization",
+          "BASIC+",
+          "Review Workflow",
+          "Upgrade Safety",
+          "Developer Tooling",
+        ],
+        cover: showcaseImageMap.megamationUpgrade,
+        link: "https://github.com/bdsrca/megamationupgrade",
+        diagram: [
+          "Legacy Code",
+          "Diff Review",
+          "Validation",
+          "Export Package",
+          "Controlled Upgrade",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Supporting Engineering Cases",
+    accent: "emerald",
+    description:
+      "Supporting case studies that show broader engineering judgment across knowledge systems, reporting, data access, mobile workflows, and CMMS product usability.",
+    projects: [
+      {
+        category: "Supporting Engineering Case",
+        title: "CMMS Knowledge Base",
+        description:
+          "A CMMS knowledge base that turns approved docs, support patterns, and old implementation know-how into cited answers.",
+        buildLabel: "Grounded answers in approved sources",
+        built:
+          "Retrieves from approved material, shows citations, handles low confidence, and routes weak answers back into review.",
+        valueLabel: "Cuts repeated support lookup",
+        rdValue:
+          "Support and implementation teams get faster answers without losing the source trail.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Important CMMS knowledge often lives in tickets, older docs, and senior memory, making support answers slow and inconsistent.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Approved sources are indexed for retrieval, answers include citations, weak confidence routes to review, and missing knowledge becomes a content signal.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Support and implementation teams can answer repeated questions faster while keeping source evidence visible.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It preserves DirectLine and BASIC+ knowledge as reusable product memory instead of letting it remain tribal or fragile.",
+          },
+        ],
+        tags: [
+          "Knowledge Systems",
+          "Cited AI",
+          "Source Governance",
+          "Support Reduction",
+          "Review Loop",
+        ],
+        cover: showcaseImageMap.knowledgeBase,
+        link: "https://github.com/bdsrca/cmms-sage",
+        diagram: [
+          "Approved Sources",
+          "Indexing",
+          "Retrieval",
+          "Cited Answer",
+          "Review Loop",
+        ],
+      },
+      {
+        category: "Supporting Engineering Case",
+        title: "CMMS Analytics, Reports, and Export API",
+        description:
+          "A reporting and export API concept for making CMMS operational data easier to discover, run, govern, and trust.",
+        buildLabel: "Made reporting reusable",
+        built:
+          "Organizes report discovery, export limits, dashboard-ready outputs, and governed data access behind repeatable patterns.",
+        valueLabel: "Reduces one-off report work",
+        rdValue:
+          "Teams can find and run trusted reports instead of starting every data question as a custom request.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Reporting requests become one-off work when definitions, exports, KPIs, and dashboard-ready data are not easy to discover or govern.",
+          },
+          {
+            label: "Technical Approach",
+            text: "A report registry, export API, KPI outputs, dashboard widgets, limits, and governance rules shape reporting into repeatable data access.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Reporting becomes the trust layer for operations and AI, giving teams reliable data before automation or suggestions are layered on top.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It helps DirectLine data remain valuable by exposing clear, governed reporting patterns without weakening the production system.",
+          },
+        ],
+        tags: [
+          "Analytics",
+          "Reports",
+          "Export API",
+          "Data Governance",
+          "Enterprise UX",
+        ],
+        cover: showcaseImageMap.analyticsExport,
+        link: "https://github.com/bdsrca/cmms-analytics",
+        diagram: ["CMMS Data", "Report Registry", "Export API", "Dashboard / KPI"],
+      },
+      {
+        category: "Supporting Engineering Case",
+        title: "CMMS Mobile PWA Architecture",
+        description:
+          "A mobile-first CMMS architecture for technician workflows, offline drafts, sync recovery, and field-ready work order updates.",
+        buildLabel: "Designed for field conditions",
+        built:
+          "Supports technician input, offline drafts, sync queues, work-order updates, and audit trails for interrupted field work.",
+        valueLabel: "Keeps work moving offline",
+        rdValue:
+          "Technicians can keep recording work even when connectivity and job flow are messy.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Technicians need to capture work beside equipment, where connectivity, interruptions, and desktop-first workflows often get in the way.",
+          },
+          {
+            label: "Technical Approach",
+            text: "A mobile PWA model supports offline drafts, sync queues, work-order updates, token controls, conflict handling, and audit trails.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Field teams can keep work moving while implementation and support teams get clearer mobile workflow behavior to validate.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It explores modern mobile experiences as an external layer that can connect back to established CMMS data and workflow rules.",
+          },
+        ],
+        tags: [
+          "Mobile CMMS",
+          "Offline Drafts",
+          "Technician UX",
+          "Sync Safety",
+          "Field Operations",
+        ],
+        cover: showcaseImageMap.mobilePwa,
+        link: "https://github.com/bdsrca/cmms-pwa-app",
+        diagram: [
+          "Technician Input",
+          "Offline Draft",
+          "Sync Queue",
+          "Work Order Update",
+          "Audit Trail",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Future Vision & Full-Stack Experiments",
+    accent: "violet",
+    description:
+      "Forward-looking architecture ideas and independent full-stack product work that show long-term product thinking beyond daily implementation tasks.",
+    projects: [
+      {
+        category: "Future Vision",
+        title: "From CMMS to Agentic EAM",
+        description:
+          "A future CMMS/EAM concept where specialist agents prepare maintenance recommendations, but people and policy still decide.",
+        buildLabel: "Modeled controlled delegation",
+        built:
+          "Uses intake, asset, inventory, and policy agents to create a review package instead of writing directly to production.",
+        valueLabel: "Speeds up reasoning without silent writes",
+        rdValue:
+          "Maintenance teams get evidence, risk, and recommendations while approval stays visible and accountable.",
+        fields: [
+          {
+            label: "Problem",
+            text: "AI agents can create risk if they act directly on assets, inventory, or policy-sensitive workflows without structured review.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Specialist agents gather intake, asset, inventory, and policy context, then package evidence and recommendations for human approval.",
+          },
+          {
+            label: "Why It Matters",
+            text: "R&D can explore agentic decision support while keeping accountability, approval, and failure paths visible.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It treats the existing CMMS as the system of record and positions AI as an assistant around it, not a replacement for it.",
+          },
+        ],
+        tags: [
+          "Agentic AI",
+          "EAM",
+          "Human Approval",
+          "Decision Support",
+          "Future Architecture",
+        ],
+        cover: showcaseImageMap.agenticEam,
+        link: "https://github.com/bdsrca/MAAI-CMMS",
+        diagram: [
+          "Request",
+          "Specialist Agent",
+          "Context / Policy Check",
+          "Human Approval",
+          "Recommended Action",
+        ],
+      },
+      {
+        category: "Future Vision",
+        title: "CMMS AI Operations Console Roadmap",
+        description:
+          "A CMMS engineering assistant and operations-console concept for helping users reason through configuration, troubleshooting, workflow design, and technical support scenarios.",
+        buildLabel: "Mapped support into guided flows",
+        built:
+          "Turns configuration checks, troubleshooting, workflow design, and support questions into guided console paths.",
+        valueLabel: "Keeps assistance bounded",
+        rdValue:
+          "Users get practical next steps without handing the whole system to an open-ended chatbot.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Configuration, troubleshooting, and support questions need guided reasoning, not an open-ended chatbot that hides uncertainty.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Console paths organize context checks, workflow design prompts, troubleshooting branches, suggested actions, and human review.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Users get practical next steps while support and R&D can see where assistance works, fails, or needs stronger rules.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "It wraps legacy CMMS expertise in guided tools that make existing configuration logic easier to use and improve.",
+          },
+        ],
+        tags: [
+          "Engineering Assistant",
+          "CMMS Reasoning",
+          "Guided Troubleshooting",
+          "Support Tooling",
+          "AI Operations",
+        ],
+        cover: showcaseImageMap.aiOperations,
+        diagram: [
+          "User Question",
+          "CMMS Context",
+          "Guided Reasoning",
+          "Suggested Action",
+          "Human Review",
+        ],
+      },
+      {
+        category: "Full-Stack Product Experiment",
+        title: "Student Help Student Full-Stack Marketplace",
+        description:
+          "A student marketplace case study for trusted local listings, school-email access, inquiries, and moderation.",
+        buildLabel: "Built the trust layer around listings",
+        built:
+          "Connects school-email access, listing states, signed media, inquiry threads, reports, admin review, email privacy, cache refresh, and cron jobs.",
+        valueLabel: "Makes the marketplace feel real",
+        rdValue:
+          "The case study shows the operations and safety details that sit behind a simple student listing experience.",
+        fields: [
+          {
+            label: "Problem",
+            text: "A marketplace looks simple until trust, identity, privacy, moderation, media, notifications, and cleanup need to work together.",
+          },
+          {
+            label: "Technical Approach",
+            text: "The app connects school-email access, listing states, signed media, inquiries, moderation, reports, email privacy, cache refresh, and scheduled cleanup.",
+          },
+          {
+            label: "Why It Matters",
+            text: "It shows full-stack product judgment and the operational details required to make a user-facing workflow dependable.",
+          },
+          {
+            label: "Legacy System Meaning",
+            text: "Although outside CMMS, it demonstrates the same pattern useful for legacy modernization: wrap complex rules in clear, safe workflows.",
+          },
+        ],
+        tags: [
+          "Full-Stack",
+          "Marketplace",
+          "Trust & Safety",
+          "Product Design",
+          "Mobile UX",
+        ],
+        cover: showcaseImageMap.studentMarketplace,
+        link: "https://github.com/bdsrca/shs-techsheet",
+        diagram: [
+          "Student Identity",
+          "Listing",
+          "Moderation",
+          "Trust Controls",
+          "Marketplace Flow",
+        ],
+      },
+    ],
+  },
+];
 ---
 
-{
-  hasProjects && (
-    <section id="projects" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Projects
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+<section
+  id="showcases"
+  class="relative isolate overflow-hidden bg-gray-950 px-6 py-12 sm:p-12 md:p-16 lg:p-24"
+>
+  <img
+    src="/showcases/generated/portfolio-dark-background.png"
+    alt=""
+    class="absolute inset-0 -z-10 h-full w-full object-cover opacity-30"
+    loading="lazy"
+  />
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-b from-gray-950/88 via-gray-950/94 to-gray-950"
+  />
 
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.projects.map((project, index) => {
-                const Component = project.link ? "a" : "div";
-                const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
-                  : {};
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+        Showcases
+      </h2>
+      <div
+        class="mt-3 h-[5px] w-[75px] rounded-full"
+        style={`background-color: ${siteConfig.accentColor}`}
+      />
+      <p class="mt-6 text-sm leading-7 text-gray-300 sm:text-base">
+        {showcaseIntro}
+      </p>
+    </div>
 
-                return (
-                  <div class="group relative">
-                    <Component
-                      {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
-                        project.link
-                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                          : ""
-                      }`}
+    <div class="mt-12 space-y-14">
+      {
+        showcaseTiers.map((tier, tierIndex) => (
+          <section
+            class:list={[
+              "showcase-tier rounded-lg border p-4 sm:p-5",
+              tier.accent === "blue" &&
+                "border-blue-300/15 bg-blue-500/[0.045]",
+              tier.accent === "emerald" &&
+                "border-emerald-300/15 bg-emerald-500/[0.045]",
+              tier.accent === "violet" &&
+                "border-violet-300/15 bg-violet-500/[0.045]",
+            ]}
+            aria-labelledby={`showcase-tier-${tierIndex}`}
+            data-showcase-tier
+          >
+            <div class="mb-6 max-w-4xl">
+              <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-200/80">
+                Tier {tierIndex + 1}
+              </p>
+              <h3
+                id={`showcase-tier-${tierIndex}`}
+                class="mt-2 text-2xl font-bold text-white sm:text-3xl"
+              >
+                {tier.title}
+              </h3>
+              <p class="mt-3 text-sm leading-7 text-gray-300">{tier.description}</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {tier.projects.map((project) => (
+                <article class="flex h-full">
+                  <div
+                    class="showcase-card group h-full w-full overflow-hidden rounded-lg border border-white/12 bg-white text-gray-950 shadow-2xl shadow-blue-950/20 transition duration-300 hover:-translate-y-1 hover:border-blue-200 focus-within:border-blue-200"
+                    data-showcase-card
+                  >
+                    <button
+                      type="button"
+                      class="showcase-visual relative block h-[18rem] w-full cursor-pointer list-none overflow-hidden bg-slate-100 text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300 sm:h-[20rem] xl:h-[22rem]"
+                      aria-label={`Show technical flow for ${project.title}`}
+                      aria-pressed="false"
+                      aria-expanded="false"
+                      data-showcase-toggle
                     >
-                      {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
-                          <svg
-                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 17L17 7M17 7H7M17 7V17"
-                            />
-                          </svg>
-                        </div>
-                      )}
+                      <img
+                        src={project.cover}
+                        alt={`${project.title} cartoon project illustration`}
+                        class="showcase-cover absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
 
-                      <div class="space-y-4">
-                        <div>
-                          <span
-                            class="text-sm font-mono"
-                            style={{ color: siteConfig.accentColor }}
-                          >
-                            0{index + 1}
-                          </span>
-                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-                            {project.name}
-                          </h3>
-                        </div>
-
-                        <p
-                          class={`text-base sm:text-lg text-gray-600 leading-relaxed ${project.link ? "pr-12 sm:pr-14 md:pr-16" : ""}`}
-                        >
+                      <div class="showcase-visual-caption absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-slate-950/90 via-slate-950/68 to-transparent p-5 pt-14 transition duration-300 group-hover:opacity-0">
+                        <p class="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-blue-100">
+                          {project.category}
+                        </p>
+                        <h4 class="mt-1.5 text-lg font-bold leading-tight text-white">
+                          {project.title}
+                        </h4>
+                        <p class="mt-1.5 line-clamp-2 text-sm leading-5 text-slate-100">
                           {project.description}
                         </p>
+                      </div>
 
-                        {project.skills && project.skills.length > 0 && (
-                          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
-                            {project.skills.map((skill) => (
-                              <span
-                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                                  project.link ? "group-hover:bg-gray-800" : ""
-                                }`}
-                              >
-                                {skill}
+                      <div
+                        class="showcase-diagram absolute inset-0 flex flex-col justify-center gap-2.5 bg-slate-950/95 p-5 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                        aria-label={`${project.title} technical diagram`}
+                      >
+                        <div class="mb-1.5">
+                          <p class="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-blue-200">
+                            Technical Flow
+                          </p>
+                          <h4 class="mt-1 line-clamp-1 text-base font-bold leading-tight text-white">
+                            {project.title}
+                          </h4>
+                        </div>
+                        {project.diagram.map((node, nodeIndex) => (
+                          <div class="flex items-center gap-2.5">
+                            <div class="min-w-0 flex-1 rounded-md border border-blue-200/25 bg-white/9 px-3.5 py-2.5 text-[0.82rem] font-semibold leading-snug text-white shadow-sm">
+                              {node}
+                            </div>
+                            {nodeIndex < project.diagram.length - 1 && (
+                              <span class="shrink-0 text-base font-bold text-blue-200" aria-hidden="true">
+                                →
                               </span>
-                            ))}
+                            )}
                           </div>
+                        ))}
+                      </div>
+                    </button>
+
+                    <div class="showcase-details flex flex-col overflow-hidden px-6">
+                      <div class="py-6">
+                      <p class="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
+                        {project.category}
+                      </p>
+                      <h4 class="mt-3 text-xl font-bold leading-tight text-gray-950">
+                        {project.title}
+                      </h4>
+                      <p class="mt-3 text-sm leading-6 text-gray-700">
+                        {project.description}
+                      </p>
+
+                      <div class="mt-5 space-y-3 text-sm leading-6 text-gray-700">
+                        {project.fields.map((field) => (
+                          <div class="rounded-md bg-slate-50 p-3 ring-1 ring-slate-200">
+                            <p class="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-blue-700">
+                              {field.label}
+                            </p>
+                            <p class="mt-1 text-sm leading-6 text-gray-700">
+                              {field.text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div class="mt-5 flex flex-wrap gap-2">
+                        {project.tags.slice(0, 5).map((tag) => (
+                          <span class="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-700">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div class="mt-auto pt-6">
+                        {project.link ? (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-2 rounded-md bg-gray-950 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300"
+                          >
+                            View Case Study
+                            <svg
+                              class="h-4 w-4"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="M7 17 17 7" />
+                              <path d="M7 7h10v10" />
+                            </svg>
+                          </a>
+                        ) : (
+                          <span class="inline-flex items-center justify-center rounded-md border border-gray-200 px-4 py-2.5 text-sm font-bold text-gray-500">
+                            Case Study Coming Soon
+                          </span>
                         )}
                       </div>
-                    </Component>
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
+                </article>
+              ))}
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll("[data-showcase-toggle]").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const card = toggle.closest("[data-showcase-card]");
+      const tier = toggle.closest("[data-showcase-tier]");
+      if (!card || !tier) return;
+
+      const willActivate = card.getAttribute("data-active") !== "true";
+      tier.querySelectorAll("[data-showcase-card]").forEach((tierCard) => {
+        tierCard.removeAttribute("data-active");
+        tierCard
+          .querySelector("[data-showcase-toggle]")
+          ?.setAttribute("aria-pressed", "false");
+        tierCard
+          .querySelector("[data-showcase-toggle]")
+          ?.setAttribute("aria-expanded", "false");
+      });
+
+      if (willActivate) {
+        tier.setAttribute("data-expanded", "true");
+        card.setAttribute("data-active", "true");
+        toggle.setAttribute("aria-pressed", "true");
+        toggle.setAttribute("aria-expanded", "true");
+      } else {
+        tier.removeAttribute("data-expanded");
+      }
+    });
+  });
+</script>
+
+<style>
+  .showcase-diagram {
+    transform: translateY(0.5rem);
+  }
+
+  .showcase-card[data-active="true"] {
+    border-color: rgb(191 219 254);
+    box-shadow:
+      0 0 0 2px rgb(147 197 253 / 0.35),
+      0 25px 50px -12px rgb(30 64 175 / 0.32);
+  }
+
+  .showcase-card[data-active="true"] .showcase-visual-caption {
+    opacity: 0;
+  }
+
+  .showcase-card[data-active="true"] .showcase-diagram {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .showcase-details {
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 320ms ease,
+      opacity 240ms ease;
+  }
+
+  .showcase-tier[data-expanded="true"] .showcase-details {
+    max-height: 72rem;
+    opacity: 1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .showcase-card:not([open]) .showcase-visual:hover .showcase-diagram {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .showcase-card[data-active="true"] .showcase-cover {
+      opacity: 0;
+    }
+  }
+</style>
