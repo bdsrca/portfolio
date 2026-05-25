@@ -1,0 +1,132 @@
+---
+import { siteConfig } from "../config";
+
+const workingStyle = siteConfig.workingStyle;
+const icons = [
+  "M12 20a8 8 0 1 0 0 -16a8 8 0 0 0 0 16z M8 12h8 M12 8v8",
+  "M4 7h16 M4 12h10 M4 17h7 M17 14l3 3l-3 3",
+  "M5 19h14 M7 17v-6l5 -4l5 4v6 M10 19v-5h4v5",
+  "M7 8h10 M7 12h6 M5 20l3 -4h9a3 3 0 0 0 3 -3v-5a3 3 0 0 0 -3 -3h-10a3 3 0 0 0 -3 3v5a3 3 0 0 0 3 3",
+  "M12 3v4 M12 17v4 M5.6 5.6l2.8 2.8 M15.6 15.6l2.8 2.8 M3 12h4 M17 12h4 M5.6 18.4l2.8 -2.8 M15.6 8.4l2.8 -2.8",
+  "M4 14l4 4l12 -12 M4 6h10",
+];
+---
+
+{
+  workingStyle && (
+    <section id="working-style" class="bg-gray-950 px-6 py-12 sm:p-12 md:p-16 lg:p-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-4">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-white">
+            Working Style
+          </h2>
+          <div
+            class="w-[75px] h-[5px] mt-2 rounded-full"
+            style={`background-color: ${siteConfig.accentColor}`}
+          />
+          <p class="mt-6 text-base leading-7 text-gray-300 sm:mt-8 sm:text-lg sm:leading-8">
+            {workingStyle.intro}
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 space-y-8">
+          <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-5 sm:p-6 md:p-8">
+            <div
+              class="absolute left-0 top-0 h-1 w-full origin-left animate-delivery-line"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-5">
+              {workingStyle.flow.map((step, index) => (
+                <div class="relative">
+                  {index < workingStyle.flow.length - 1 && (
+                    <div class="hidden md:block absolute left-[calc(100%-8px)] top-7 h-px w-5 bg-white/20" />
+                  )}
+                  <div class="flex md:block gap-4">
+                    <div
+                      class="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-white/15 bg-white/10 text-white shadow-lg"
+                      style={`box-shadow: 0 0 0 1px ${siteConfig.accentColor}33`}
+                    >
+                      <span class="text-sm font-bold">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div class="md:mt-4">
+                      <h3 class="text-lg font-semibold text-white">
+                        {step.label}
+                      </h3>
+                      <p class="mt-2 text-sm leading-6 text-gray-300">
+                        {step.detail}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {workingStyle.qualities.map((quality, index) => (
+              <article class="group rounded-lg border border-white/10 bg-white/[0.04] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.07]">
+                <div class="flex items-start gap-4">
+                  <div class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-white text-gray-950 transition-transform duration-300 group-hover:scale-105">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="h-5 w-5"
+                      aria-hidden="true"
+                    >
+                      <path d={icons[index] ?? icons[0]} />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-white">
+                      {quality.title}
+                    </h3>
+                    <p class="mt-2 text-sm leading-6 text-gray-300 sm:text-base sm:leading-7 line-clamp-3 sm:line-clamp-none">
+                      {quality.description}
+                    </p>
+                    {quality.keywords && (
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        {quality.keywords.map((keyword) => (
+                          <span class="rounded-md border border-white/10 bg-white/[0.05] px-2.5 py-1 text-xs font-semibold text-blue-100">
+                            {keyword}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  @keyframes deliveryLine {
+    0% {
+      transform: scaleX(0);
+      opacity: 0.5;
+    }
+    70% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-delivery-line {
+    animation: deliveryLine 1.4s ease-out both;
+  }
+</style>
