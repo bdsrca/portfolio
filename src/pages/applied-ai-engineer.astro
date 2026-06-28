@@ -112,12 +112,30 @@ const appliedAiConfig = {
     intro:
       "I start with the workflow. I map the user task, check the data and permissions, define the review path, and then decide where AI belongs.",
     flow: [
-      "Map the workflow",
-      "Ground the data",
-      "Define controls",
-      "Prototype the assistant",
-      "Verify outputs",
-      "Ship with review",
+      {
+        label: "Map the workflow",
+        detail: "Start with the user task, the record being changed, and the decision someone has to make.",
+      },
+      {
+        label: "Ground the data",
+        detail: "Check source records, permissions, rules, and edge cases before designing the AI step.",
+      },
+      {
+        label: "Define controls",
+        detail: "Set the review path, reason codes, logs, and rollback options before automation acts.",
+      },
+      {
+        label: "Prototype the assistant",
+        detail: "Build a narrow version that drafts, retrieves, or suggests inside the product flow.",
+      },
+      {
+        label: "Verify outputs",
+        detail: "Test scenarios, output shape, permissions, and low-confidence cases before release.",
+      },
+      {
+        label: "Ship with review",
+        detail: "Keep people close to the result with clear handoffs and visible evidence.",
+      },
     ],
     qualities: [
       {

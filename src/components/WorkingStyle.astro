@@ -4,6 +4,15 @@ import { siteConfig } from "../config";
 const config = Astro.props.config ?? siteConfig;
 const sectionLabels = Astro.props.sectionLabels ?? {};
 const workingStyle = config.workingStyle;
+const flowSteps =
+  workingStyle?.flow?.map((step) =>
+    typeof step === "string" ? { label: step } : step,
+  ) ?? [];
+const qualities =
+  workingStyle?.qualities?.map((quality) => ({
+    ...quality,
+    description: quality.description ?? quality.summary,
+  })) ?? [];
 const icons = [
   "M12 20a8 8 0 1 0 0 -16a8 8 0 0 0 0 16z M8 12h8 M12 8v8",
   "M4 7h16 M4 12h10 M4 17h7 M17 14l3 3l-3 3",
@@ -37,28 +46,27 @@ const icons = [
               class="absolute left-0 top-0 h-1 w-full origin-left animate-delivery-line"
               style={`background-color: ${config.accentColor}`}
             />
-            <div class="grid grid-cols-1 gap-5 md:grid-cols-5">
-              {workingStyle.flow.map((step, index) => (
-                <div class="relative">
-                  {index < workingStyle.flow.length - 1 && (
-                    <div class="hidden md:block absolute left-[calc(100%-8px)] top-7 h-px w-5 bg-white/20" />
-                  )}
-                  <div class="flex md:block gap-4">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {flowSteps.map((step, index) => (
+                <div class="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                  <div class="flex gap-4">
                     <div
-                      class="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-white/15 bg-white/10 text-white shadow-lg"
+                      class="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 bg-white/10 text-white shadow-lg"
                       style={`box-shadow: 0 0 0 1px ${config.accentColor}33`}
                     >
                       <span class="text-sm font-bold">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <div class="md:mt-4">
-                      <h3 class="text-lg font-semibold text-white">
+                    <div class="min-w-0">
+                      <h3 class="text-base font-semibold text-white">
                         {step.label}
                       </h3>
-                      <p class="mt-2 text-sm leading-6 text-gray-300">
-                        {step.detail}
-                      </p>
+                      {step.detail && (
+                        <p class="mt-2 text-sm leading-6 text-gray-300">
+                          {step.detail}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -67,7 +75,7 @@ const icons = [
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {workingStyle.qualities.map((quality, index) => (
+            {qualities.map((quality, index) => (
               <article class="group rounded-lg border border-white/10 bg-white/[0.04] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.07]">
                 <div class="flex items-start gap-4">
                   <div class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-white text-gray-950 transition-transform duration-300 group-hover:scale-105">
