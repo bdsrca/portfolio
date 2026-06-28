@@ -1,16 +1,20 @@
 ---
 import { siteConfig } from "../config";
+
+const config = Astro.props.config ?? siteConfig;
+const heroLabels = Astro.props.heroLabels ?? {};
+const identityImage = config.avatarImage ?? config.profileImage;
 ---
 
 <div
   id="hero"
-  class="relative isolate overflow-hidden bg-white py-24 md:h-screen"
-  style={`--accent-color: ${siteConfig.accentColor}`}
+  class="relative isolate overflow-hidden bg-white py-24 md:min-h-screen"
+  style={`--accent-color: ${config.accentColor}`}
 >
   <!-- Gradient overlay -->
   <div
     class="absolute inset-0 -z-10"
-    style={`background: radial-gradient(ellipse 800px 1200px at 0% 0%, ${siteConfig.accentColor}40 0%, ${siteConfig.accentColor}25 20%, ${siteConfig.accentColor}10 40%, rgba(255, 255, 255, 0.3) 70%, rgba(255, 255, 255, 0.8) 90%, white 100%)`}
+    style={`background: radial-gradient(ellipse 800px 1200px at 0% 0%, ${config.accentColor}40 0%, ${config.accentColor}25 20%, ${config.accentColor}10 40%, rgba(255, 255, 255, 0.3) 70%, rgba(255, 255, 255, 0.8) 90%, white 100%)`}
   >
   </div>
   <svg
@@ -39,7 +43,7 @@ import { siteConfig } from "../config";
         <text
           x="50"
           y="50"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="24"
           transform="rotate(-15)">&lt;/&gt;</text
@@ -47,7 +51,7 @@ import { siteConfig } from "../config";
         <text
           x="150"
           y="100"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="20"
           transform="rotate(10)">{}</text
@@ -55,7 +59,7 @@ import { siteConfig } from "../config";
         <text
           x="250"
           y="80"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="18"
           transform="rotate(-5)">=&gt;</text
@@ -63,7 +67,7 @@ import { siteConfig } from "../config";
         <text
           x="100"
           y="200"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="22"
           transform="rotate(15)">[]</text
@@ -71,7 +75,7 @@ import { siteConfig } from "../config";
         <text
           x="300"
           y="180"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="20"
           transform="rotate(-10)">&lt;&gt;</text
@@ -79,7 +83,7 @@ import { siteConfig } from "../config";
         <text
           x="200"
           y="250"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="24"
           transform="rotate(5)">()</text
@@ -87,7 +91,7 @@ import { siteConfig } from "../config";
         <text
           x="50"
           y="320"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="18"
           transform="rotate(-8)">::</text
@@ -95,7 +99,7 @@ import { siteConfig } from "../config";
         <text
           x="350"
           y="300"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="22"
           transform="rotate(12)">==</text
@@ -103,7 +107,7 @@ import { siteConfig } from "../config";
         <text
           x="150"
           y="350"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="20"
           transform="rotate(-15)">++</text
@@ -111,7 +115,7 @@ import { siteConfig } from "../config";
         <text
           x="250"
           y="370"
-          fill={siteConfig.accentColor}
+          fill={config.accentColor}
           font-family="monospace"
           font-size="24"
           transform="rotate(8)">;</text
@@ -129,41 +133,105 @@ import { siteConfig } from "../config";
       height="100%"
       stroke-width={0}></rect>
   </svg>
-  <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
-    <div>
+  <div class="absolute inset-0 -z-10 opacity-50">
+    <svg class="h-full w-full" viewBox="0 0 1400 900" fill="none" aria-hidden="true">
+      <path d="M100 190H360C430 190 430 270 500 270H760C840 270 840 190 920 190H1260" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="8 12" />
+      <path d="M180 640H420C500 640 500 560 580 560H860C930 560 930 640 1000 640H1260" stroke="#0f172a" stroke-width="1" stroke-dasharray="4 10" opacity="0.35" />
+      <circle cx="360" cy="190" r="7" fill="#2563eb" />
+      <circle cx="760" cy="270" r="7" fill="#2563eb" />
+      <circle cx="920" cy="190" r="7" fill="#2563eb" />
+      <circle cx="580" cy="560" r="6" fill="#10b981" />
+      <circle cx="1000" cy="640" r="6" fill="#f59e0b" />
+      <rect x="1050" y="300" width="210" height="84" rx="14" fill="#ffffff" stroke="#bfdbfe" opacity="0.75" />
+      <path d="M1080 330H1230M1080 354H1180" stroke="#2563eb" stroke-width="6" stroke-linecap="round" opacity="0.35" />
+      <rect x="125" y="405" width="230" height="110" rx="16" fill="#ffffff" stroke="#cbd5e1" opacity="0.7" />
+      <path d="M155 438H295M155 466H250M155 494H315" stroke="#0f172a" stroke-width="5" stroke-linecap="round" opacity="0.18" />
+    </svg>
+  </div>
+  <div
+    class="mx-auto flex min-h-[calc(100vh-8rem)] flex-col items-start justify-center gap-8 p-6 pt-24 sm:p-12 md:p-24 lg:flex-row lg:items-center lg:justify-between lg:gap-16"
+  >
+    <div class="max-w-5xl">
       <h2
-        class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-700 animate-fade-in"
+        class="text-pretty text-xl sm:text-2xl md:text-4xl font-bold tracking-tight text-gray-700 animate-fade-in"
       >
-        Hello.
+        {heroLabels.greeting ?? "Hello."}
       </h2>
       <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
+        class="mt-6 sm:mt-8 text-pretty text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-gray-800 animate-fade-in animation-delay-200"
       >
-        I'm <span style={{ color: siteConfig.accentColor }}
-          >{siteConfig.name}</span
+        {heroLabels.namePrefix ?? "I'm"} <span style={{ color: config.accentColor }}
+          >{config.name}</span
         >
       </h1>
-      <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-600 animate-fade-in animation-delay-400"
-      >
-        {siteConfig.title}
-      </p>
       {
-        siteConfig.heroDescription && (
-          <p class="mt-4 max-w-4xl text-pretty text-sm sm:text-base md:text-lg/8 text-gray-600 animate-fade-in animation-delay-600">
-            {siteConfig.heroDescription}
+        config.positioning && (
+          <p class="mt-6 max-w-5xl text-pretty text-2xl font-semibold leading-tight text-gray-900 sm:text-3xl md:text-4xl animate-fade-in animation-delay-400">
+            {config.positioning}
           </p>
         )
       }
+      <p
+        class="mt-5 text-pretty text-sm font-semibold uppercase tracking-[0.22em] text-gray-500 animate-fade-in animation-delay-600"
+      >
+        {config.title}
+      </p>
+      {
+        config.heroDescription && (
+          <p class="mt-6 hidden max-w-4xl text-pretty text-base text-gray-600 animate-fade-in animation-delay-600 sm:block md:text-lg/8">
+            {config.heroDescription}
+          </p>
+        )
+      }
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap animate-fade-in animation-delay-600">
+        <a
+          href="#showcases"
+          class="inline-flex items-center justify-center gap-2 rounded-md bg-gray-950 px-4 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800"
+        >
+          {heroLabels.primaryCta ?? "Start with the 9-project R&D map"}
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="#experience"
+          class="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-3 text-sm font-semibold text-gray-950 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50"
+        >
+          {heroLabels.secondaryCta ?? "View Technical Evidence"}
+        </a>
+      </div>
     </div>
+    {
+      config.profileImage && (
+        <div class="w-full max-w-xs shrink-0 animate-fade-in animation-delay-400 sm:max-w-sm lg:max-w-md">
+          <div class="overflow-hidden rounded-full border border-gray-200 bg-gray-950 shadow-2xl shadow-blue-950/20">
+            <img
+              src={identityImage}
+              alt={`${config.name} avatar`}
+              class="aspect-square w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      )
+    }
   </div>
+  {identityImage && (
+    <div class="pointer-events-none absolute bottom-8 left-0 hidden w-full overflow-hidden md:block">
+      <img
+        src={identityImage}
+        alt=""
+        class="cat-walk h-10 w-10 rounded-full object-cover opacity-80 ring-1 ring-blue-200/70"
+        loading="lazy"
+      />
+    </div>
+  )}
   <div
-    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex gap-x-4 sm:gap-x-6 md:gap-x-8 text-gray-700 animate-fade-in animation-delay-600"
+    class="absolute bottom-0 left-0 right-0 hidden p-8 text-gray-700 animate-fade-in animation-delay-600 sm:flex sm:gap-x-6 sm:p-12 md:gap-x-8 md:p-24"
   >
     {
-      siteConfig.social?.email && (
+      config.social?.email && (
         <a
-          href={`mailto:${siteConfig.social.email}`}
+          href={`mailto:${config.social.email}`}
           aria-label="Email"
           class="transition-colors duration-300 hover:text-[var(--accent-color)]"
         >
@@ -187,9 +255,9 @@ import { siteConfig } from "../config";
       )
     }
     {
-      siteConfig.social?.linkedin && (
+      config.social?.linkedin && (
         <a
-          href={siteConfig.social.linkedin}
+          href={config.social.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
@@ -220,9 +288,9 @@ import { siteConfig } from "../config";
       )
     }
     {
-      siteConfig.social?.twitter && (
+      config.social?.twitter && (
         <a
-          href={siteConfig.social.twitter}
+          href={config.social.twitter}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Twitter"
@@ -250,9 +318,9 @@ import { siteConfig } from "../config";
       )
     }
     {
-      siteConfig.social?.github && (
+      config.social?.github && (
         <a
-          href={siteConfig.social.github}
+          href={config.social.github}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
@@ -308,5 +376,25 @@ import { siteConfig } from "../config";
 
   .animation-delay-600 {
     animation-delay: 0.6s;
+  }
+
+  .cat-walk {
+    animation: catWalk 18s linear infinite;
+  }
+
+  @keyframes catWalk {
+    from {
+      transform: translateX(-64px);
+    }
+    to {
+      transform: translateX(calc(100vw + 64px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cat-walk {
+      animation: none;
+      transform: translateX(24px);
+    }
   }
 </style>

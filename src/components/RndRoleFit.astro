@@ -1,7 +1,9 @@
 ---
 import { siteConfig } from "../config";
 
-const roleFit = siteConfig.rndRoleFit;
+const config = Astro.props.config ?? siteConfig;
+const sectionLabels = Astro.props.sectionLabels ?? {};
+const roleFit = config.rndRoleFit;
 ---
 
 {
@@ -11,11 +13,11 @@ const roleFit = siteConfig.rndRoleFit;
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
           <div class="lg:col-span-4">
             <h2 class="text-3xl font-bold text-gray-950 sm:text-4xl md:text-5xl">
-              Where I Can Help R&D
+              {sectionLabels.roleFit ?? "Where I Can Help R&D"}
             </h2>
             <div
               class="mt-2 h-[5px] w-[75px] rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
+              style={`background-color: ${config.accentColor}`}
             />
           </div>
 

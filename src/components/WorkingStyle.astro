@@ -1,7 +1,9 @@
 ---
 import { siteConfig } from "../config";
 
-const workingStyle = siteConfig.workingStyle;
+const config = Astro.props.config ?? siteConfig;
+const sectionLabels = Astro.props.sectionLabels ?? {};
+const workingStyle = config.workingStyle;
 const icons = [
   "M12 20a8 8 0 1 0 0 -16a8 8 0 0 0 0 16z M8 12h8 M12 8v8",
   "M4 7h16 M4 12h10 M4 17h7 M17 14l3 3l-3 3",
@@ -18,11 +20,11 @@ const icons = [
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
         <div class="lg:col-span-4">
           <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-white">
-            Working Style
+            {sectionLabels.workingStyle ?? "Working Style"}
           </h2>
           <div
             class="w-[75px] h-[5px] mt-2 rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
+            style={`background-color: ${config.accentColor}`}
           />
           <p class="mt-6 text-base leading-7 text-gray-300 sm:mt-8 sm:text-lg sm:leading-8">
             {workingStyle.intro}
@@ -33,7 +35,7 @@ const icons = [
           <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-5 sm:p-6 md:p-8">
             <div
               class="absolute left-0 top-0 h-1 w-full origin-left animate-delivery-line"
-              style={`background-color: ${siteConfig.accentColor}`}
+              style={`background-color: ${config.accentColor}`}
             />
             <div class="grid grid-cols-1 gap-5 md:grid-cols-5">
               {workingStyle.flow.map((step, index) => (
@@ -44,7 +46,7 @@ const icons = [
                   <div class="flex md:block gap-4">
                     <div
                       class="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-white/15 bg-white/10 text-white shadow-lg"
-                      style={`box-shadow: 0 0 0 1px ${siteConfig.accentColor}33`}
+                      style={`box-shadow: 0 0 0 1px ${config.accentColor}33`}
                     >
                       <span class="text-sm font-bold">
                         {String(index + 1).padStart(2, "0")}

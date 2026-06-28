@@ -1,7 +1,11 @@
 ---
 import { siteConfig } from "../config";
 
-const showcaseIntro =
+const config = Astro.props.config ?? siteConfig;
+const propsShowcaseIntro = Astro.props.showcaseIntro;
+const propsShowcaseTiers = Astro.props.showcaseTiers;
+
+const defaultShowcaseIntro =
   "Selected R&D systems, engineering case studies, and full-stack experiments that turn repeated workflow friction into safer automation, AI-assisted operations, legacy modernization, and product-ready control patterns.";
 
 const showcaseImageMap = {
@@ -19,7 +23,7 @@ const showcaseImageMap = {
     "/showcases/generated/student-help-student-marketplace-cover.png",
 };
 
-const showcaseTiers = [
+const defaultShowcaseTiers = [
   {
     title: "Featured R&D Systems",
     accent: "blue",
@@ -453,6 +457,9 @@ const showcaseTiers = [
     ],
   },
 ];
+
+const showcaseIntro = propsShowcaseIntro ?? defaultShowcaseIntro;
+const showcaseTiers = propsShowcaseTiers ?? defaultShowcaseTiers;
 ---
 
 <section
@@ -476,7 +483,7 @@ const showcaseTiers = [
       </h2>
       <div
         class="mt-3 h-[5px] w-[75px] rounded-full"
-        style={`background-color: ${siteConfig.accentColor}`}
+        style={`background-color: ${config.accentColor}`}
       />
       <p class="mt-6 text-sm leading-7 text-gray-300 sm:text-base">
         {showcaseIntro}
@@ -614,7 +621,7 @@ const showcaseTiers = [
                             rel="noopener noreferrer"
                             class="inline-flex items-center justify-center gap-2 rounded-md bg-gray-950 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300"
                           >
-                            View Case Study
+                            {project.linkLabel ?? "View Case Study"}
                             <svg
                               class="h-4 w-4"
                               viewBox="0 0 24 24"

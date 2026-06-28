@@ -1,7 +1,9 @@
 ---
 import { siteConfig } from "../config";
 
-const whyRnd = siteConfig.whyRnd;
+const config = Astro.props.config ?? siteConfig;
+const sectionLabels = Astro.props.sectionLabels ?? {};
+const whyRnd = config.whyRnd;
 ---
 
 {
@@ -10,11 +12,11 @@ const whyRnd = siteConfig.whyRnd;
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
           <h2 class="text-3xl font-bold text-gray-950 sm:text-4xl md:text-5xl">
-            Why R&D
+            {sectionLabels.why ?? "Why R&D"}
           </h2>
           <div
             class="mt-2 h-[5px] w-[75px] rounded-full"
-            style={`background-color: ${siteConfig.accentColor}`}
+            style={`background-color: ${config.accentColor}`}
           />
         </div>
 

@@ -1,0 +1,537 @@
+---
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import WhyRnd from "../components/WhyRnd.astro";
+import RndRoleFit from "../components/RndRoleFit.astro";
+import About from "../components/About.astro";
+import WorkingStyle from "../components/WorkingStyle.astro";
+import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+const appliedAiConfig = {
+  name: "LIANG LI",
+  title:
+    "RAG Systems | Workflow Automation | Product Systems | Evaluation & Guardrails",
+  positioning:
+    "I build AI features for enterprise workflows, from RAG and automation to review flows, permissions, and evaluation.",
+  description:
+    "Applied AI Engineer profile for Liang Li, focused on RAG, workflow automation, evaluation, guardrails, and enterprise product systems.",
+  heroDescription:
+    "I turn model output into product behavior people can check: the right data, permission checks, review screens, logs, and a clear handoff when a person should decide.",
+  profileImage: "/liang-li-profile.jpg",
+  avatarImage: "/showcases/generated/cat.png",
+  accentColor: "#2563eb",
+  social: {
+    email: "bdsrca@gmail.com",
+    linkedin: "",
+    twitter: "",
+    github: "https://github.com/bdsrca",
+  },
+  aboutMe:
+    "I build applied AI features that fit into real product workflows. I care about source data, permissions, review screens, reason codes, audit trails, and the people who have to trust the result.",
+  whyRnd: {
+    intro:
+      "I have worked close to operational workflows where software has to handle exceptions, approvals, reporting gaps, and user-specific constraints.",
+    detail:
+      "That background helps me design features that fit inside real systems. A useful assistant retrieves context, drafts with boundaries, shows uncertainty clearly, and gives people an easy way to review or reject the result.",
+    points: [
+      "Turn repeated workflow friction into useful product ideas.",
+      "Ground answers in source data, permissions, and reviewable context.",
+      "Design automation with previews, approvals, logs, and rollback paths.",
+    ],
+    lightSystem: {
+      title: "Applied AI Product Layer",
+      intro:
+        "The useful work happens around the model call. The product layer decides whether people can use the feature in a real organization.",
+      sections: [
+        {
+          title: "Context",
+          body: "Retrieve the right records, rules, and examples before asking the model to help.",
+        },
+        {
+          title: "Control",
+          body: "Use permissions, output contracts, review screens, and reason codes before any action moves forward.",
+        },
+        {
+          title: "Evidence",
+          body: "Keep logs, evaluations, and user-facing explanations so teams can inspect what happened.",
+        },
+      ],
+    },
+  },
+  rndRoleFit: [
+    {
+      title: "RAG and assistant design",
+      summary:
+        "I design assistants around retrieved context, citations, clear uncertainty, and handoffs when a person should review the result.",
+      signals: ["RAG", "Citations", "Review flow", "Uncertainty"],
+    },
+    {
+      title: "Workflow automation with controls",
+      summary:
+        "I treat automation as a product surface. Users need previews, approvals, reason codes, and rollback paths before automation changes records or sends work forward.",
+      signals: ["Approvals", "Reason codes", "Audit trails", "Rollback"],
+    },
+    {
+      title: "Business system fit",
+      summary:
+        "My product systems background gives me a practical view of permissions, support workflows, reporting gaps, and operational data quality.",
+      signals: ["RBAC", "Data quality", "Reporting", "Support flows"],
+    },
+    {
+      title: "Evaluation-minded engineering",
+      summary:
+        "I use verification scripts, smoke checks, scenario tests, and output-contract checks for AI features.",
+      signals: ["Evaluation", "Playwright", "Contracts", "Smoke tests"],
+    },
+  ],
+  capabilityModel: [
+    {
+      title: "Model-to-workflow integration",
+      summary:
+        "Connects model output to screens, APIs, permissions, and review steps.",
+      signals: ["Tool calling", "APIs", "Permissions", "Review UX"],
+    },
+    {
+      title: "Operational data grounding",
+      summary:
+        "Works from source records, system rules, reporting needs, and user context before drafting or recommending actions.",
+      signals: ["Source records", "Rules", "Reports", "Context"],
+    },
+    {
+      title: "Plain-language delivery",
+      summary:
+        "Explains how the system works to engineers, product owners, support teams, and users in plain language.",
+      signals: ["Product communication", "Support", "Docs", "Training"],
+    },
+  ],
+  workingStyle: {
+    intro:
+      "I start with the workflow. I map the user task, check the data and permissions, define the review path, and then decide where AI belongs.",
+    flow: [
+      "Map the workflow",
+      "Ground the data",
+      "Define controls",
+      "Prototype the assistant",
+      "Verify outputs",
+      "Ship with review",
+    ],
+    qualities: [
+      {
+        title: "Specific before clever",
+        summary:
+          "I prefer narrow, testable AI features over broad assistant promises.",
+      },
+      {
+        title: "Human review by design",
+        summary:
+          "I design clear handoffs for work that affects records, schedules, or decisions.",
+      },
+      {
+        title: "Check before trust",
+        summary:
+          "I want source context, logs, and checks before trusting polished output.",
+      },
+    ],
+  },
+  skills: [
+    "OpenAI API",
+    "RAG",
+    "Tool Calling",
+    "Structured Outputs",
+    "Prompt Engineering",
+    "AI Evaluation",
+    "Guardrails",
+    "Workflow Automation",
+    "Human-in-the-loop",
+    "Python",
+    "TypeScript",
+    "Next.js",
+    "React",
+    "FastAPI",
+    "Node.js",
+    "Prisma",
+    "PostgreSQL",
+    "Zod",
+    "Playwright",
+    "Vercel",
+    "CMMS/EAM",
+    "Work Orders",
+    "Preventive Maintenance",
+    "RBAC",
+    "Audit Logs",
+    "Dashboards",
+    "Reporting",
+    "Data Quality",
+  ],
+  projects: [{}],
+  experience: [
+    {
+      role: "Applied AI / CMMS SaaS Builder",
+      company: "NextCMMS",
+      companyLink: "https://nextcmms.net",
+      kicker: "Product System Build",
+      period: "Current",
+      dateRange: "Current",
+      description:
+        "Building a CMMS SaaS product for work requests, work orders, tenant access, RBAC, PM automation, AI intake, safety checks, ledgers, and verification scripts.",
+      phaseLabels: ["Product", "Automation", "Verification"],
+      bullets: [
+        "Designed AI intake and PM autopilot workflows around approvals, policies, and traceable decisions.",
+        "Built verification scripts for work requests, work orders, dashboard AI safety, automation permissions, and AI ledger behavior.",
+        "Connected AI product ideas to real CMMS objects: assets, work orders, PM schedules, users, tenants, and reports.",
+      ],
+      achievements: [
+        "Designed AI intake and PM autopilot workflows around approvals, policies, and traceable decisions.",
+        "Built verification scripts for work requests, work orders, dashboard AI safety, automation permissions, and AI ledger behavior.",
+        "Connected AI product ideas to real CMMS objects: assets, work orders, PM schedules, users, tenants, and reports.",
+      ],
+    },
+    {
+      role: "CMMS / EAM Systems Specialist",
+      company: "Enterprise maintenance software work",
+      kicker: "Operational Systems Background",
+      period: "Professional background",
+      dateRange: "Professional background",
+      description:
+        "Worked close to client-facing CMMS workflows, reporting needs, integrations, support cases, custom logic, and legacy system constraints.",
+      phaseLabels: ["Workflow", "Reports", "Support"],
+      bullets: [
+        "Translated client workflow problems into reports, configuration changes, data fixes, and product ideas.",
+        "Built judgment around operational exceptions, permissions, PM, inventory, purchasing, and reporting gaps.",
+        "Learned where AI assistance can help and where the system needs a person to stay in control.",
+      ],
+      achievements: [
+        "Translated client workflow problems into reports, configuration changes, data fixes, and product ideas.",
+        "Built judgment around operational exceptions, permissions, PM, inventory, purchasing, and reporting gaps.",
+        "Learned where AI assistance can help and where the system needs a person to stay in control.",
+      ],
+    },
+  ],
+  education: [
+    {
+      degree: "Bachelor of Applied Computer Science",
+      school: "Dalhousie University",
+      institution: "Dalhousie University",
+      period: "Completed",
+      dateRange: "Completed",
+      description:
+        "Software engineering foundation across programming, databases, systems, and product-oriented development.",
+      achievements: [
+        "Built a software engineering foundation across programming, databases, and system design.",
+        "Developed the base needed for full-stack product engineering and applied AI systems.",
+      ],
+    },
+    {
+      degree: "Applied AI and product systems learning",
+      school: "Independent projects",
+      institution: "Independent projects",
+      period: "Ongoing",
+      dateRange: "Ongoing",
+      description:
+        "Hands-on work with RAG, LLM APIs, structured outputs, workflow automation, evaluation, and full-stack AI product surfaces.",
+      achievements: [
+        "Built hands-on projects with RAG, LLM APIs, structured outputs, and workflow automation.",
+        "Focused recent learning on evaluation, guardrails, and full-stack AI product surfaces.",
+      ],
+    },
+  ],
+};
+
+const navLabels = {
+  why: "Why AI",
+  about: "About",
+  style: "Style",
+  showcases: "Showcases",
+  experience: "Experience",
+  education: "Education",
+  mobileWhy: "AI",
+  mobileAbout: "About",
+  mobileCases: "Cases",
+  mobileStyle: "Style",
+  mobilePath: "Path",
+};
+
+const sectionLabels = {
+  why: "Why Applied AI",
+  roleFit: "Where I Fit",
+  about: "About This Profile",
+  workingStyle: "Working Style",
+  experience: "Applied AI Evidence",
+  experienceIntro:
+    "Examples of applied AI work across product surfaces, data quality, permissions, verification, and review.",
+  education: "Education & Learning",
+  educationIntro:
+    "Formal education and hands-on AI product learning that support applied engineering work.",
+};
+
+const heroLabels = {
+  greeting: "Applied AI.",
+  namePrefix: "I'm",
+  primaryCta: "Start with the project evidence",
+  secondaryCta: "View experience",
+};
+
+const showcaseIntro =
+  "Selected systems that show how I connect AI ideas to product surfaces, operational data, permissions, review steps, and verification.";
+
+const showcaseTiers = [
+  {
+    title: "Applied AI Product Systems",
+    accent: "blue",
+    description:
+      "Core projects that best represent how I build AI features around enterprise workflows.",
+    projects: [
+      {
+        category: "CMMS SaaS",
+        title: "NextCMMS",
+        description:
+          "A CMMS SaaS project for asset operations, work requests, work orders, PM automation, AI intake, safety checks, ledgers, and verification scripts.",
+        buildLabel: "Built the product surface",
+        built:
+          "Designed tenant access, RBAC, work-order flows, PM autopilot policies, AI intake routes, and validation scripts around operational records.",
+        valueLabel: "Shows AI in a real workflow",
+        rdValue:
+          "AI suggestions stay tied to records, permissions, policies, and review steps.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Maintenance teams need help with intake, planning, and follow-up without losing control of records and approvals.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Next.js, Prisma, tenant access, RBAC, work orders, PM autopilot services, AI intake routes, ledgers, and verification scripts.",
+          },
+          {
+            label: "Why It Matters",
+            text: "The project keeps intake, approvals, logs, and review in the same workflow.",
+          },
+        ],
+        tags: ["Next.js", "Prisma", "AI Intake", "PM Autopilot", "RBAC"],
+        cover: "/showcases/generated/cmms-agentic-eam-cover.png",
+        link: "https://nextcmms.net",
+        linkLabel: "Open nextcmms.net",
+        diagram: [
+          "Work Request",
+          "AI Intake",
+          "Policy Check",
+          "Human Review",
+          "Work Order",
+          "Ledger",
+        ],
+      },
+      {
+        category: "RAG System",
+        title: "CMMS Sage",
+        description:
+          "A knowledge assistant for CMMS engineering and maintenance knowledge, built around retrieved context, sources, low-confidence handling, and review.",
+        buildLabel: "Grounded assistant answers",
+        built:
+          "Retrieves relevant context, cites sources, checks generated guidance, and turns weak answers into review items.",
+        valueLabel: "Reduces blind trust",
+        rdValue:
+          "Teams can inspect where an answer came from before using it in engineering or support work.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Important system knowledge often lives across old tickets, documents, snippets, and senior memory.",
+          },
+          {
+            label: "Technical Approach",
+            text: "RAG pipeline, FastAPI, Next.js UI, source display, and review-oriented answer handling.",
+          },
+          {
+            label: "Why It Matters",
+            text: "A useful assistant should show evidence and ask for review when it has low confidence.",
+          },
+        ],
+        tags: ["RAG", "FastAPI", "Next.js", "Sources", "Review"],
+        cover: "/showcases/generated/cmms-sage-cover.png",
+        link: "https://github.com/bdsrca/cmms-sage",
+        diagram: [
+          "Question",
+          "Retrieve Context",
+          "Generate Draft",
+          "Show Sources",
+          "Flag Weakness",
+          "Review",
+        ],
+      },
+      {
+        category: "AI Workflow Control",
+        title: "CMMS Local AI API Console",
+        description:
+          "A control surface for testing AI intake with output contracts, validation rules, saved tests, logs, and promotion gates.",
+        buildLabel: "Controlled AI experiments",
+        built:
+          "Runs intake through local and API model patterns, checks outputs against contracts, and saves tests before promotion.",
+        valueLabel: "Keeps experiments inspectable",
+        rdValue:
+          "Engineers can test AI workflow ideas against realistic system constraints before shipping anything to users.",
+        fields: [
+          {
+            label: "Problem",
+            text: "AI prototypes can look convincing while ignoring system rules, output shape, or validation needs.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Prompt tests, structured output contracts, environment validation, logs, and promotion checks.",
+          },
+          {
+            label: "Why It Matters",
+            text: "The console turns AI experiments into reviewable engineering work.",
+          },
+        ],
+        tags: ["Structured Outputs", "Validation", "Logs", "Local LLM"],
+        cover: "/showcases/generated/cmms-local-ai-api-console-cover.png",
+        link: "https://github.com/bdsrca/cmms-api",
+        diagram: [
+          "Prompt",
+          "Model Output",
+          "Contract",
+          "Validation",
+          "Saved Test",
+          "Promotion",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Workflow, Data, and Operations Cases",
+    accent: "emerald",
+    description:
+      "Supporting work that shows product judgment around automation, data quality, mobile workflows, and operational UX.",
+    projects: [
+      {
+        category: "Automation Governance",
+        title: "CMMS Automation Rules",
+        description:
+          "A rules workflow for alerts, reports, notifications, and work-order actions with dry runs and audit trails.",
+        buildLabel: "Preview before action",
+        built:
+          "Designed disabled-by-default rules, dry-run previews, notification controls, and audit records.",
+        valueLabel: "Safer automation",
+        rdValue:
+          "Users see what a rule would do before it changes records or sends work forward.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Operational automation can create noise or bad actions when teams cannot preview behavior first.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Rules, dry-run outputs, action previews, notification controls, and audit logging.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Automation earns trust when users can inspect and control it.",
+          },
+        ],
+        tags: ["Rules", "Dry Runs", "Audit Trail", "Notifications"],
+        cover: "/showcases/generated/cmms-automation-cover.png",
+        link: "https://github.com/bdsrca",
+        diagram: ["Rule", "Dry Run", "Preview", "Approval", "Action", "Audit"],
+      },
+      {
+        category: "Analytics",
+        title: "CMMS Analytics and Export API",
+        description:
+          "Reporting and export work across maintenance data, dashboards, KPIs, and client-facing decisions.",
+        buildLabel: "Made operations data usable",
+        built:
+          "Organized reporting outputs, dashboard signals, and export patterns around practical maintenance decisions.",
+        valueLabel: "Grounds AI in cleaner data",
+        rdValue:
+          "AI assistance improves when the underlying operational data is understandable and trusted.",
+        fields: [
+          {
+            label: "Problem",
+            text: "AI suggestions are weak when the underlying records and metrics are messy or unclear.",
+          },
+          {
+            label: "Technical Approach",
+            text: "SQL, dashboards, export APIs, KPI organization, and data-quality review.",
+          },
+          {
+            label: "Why It Matters",
+            text: "Clean reporting gives AI features better context to work from.",
+          },
+        ],
+        tags: ["SQL", "Dashboards", "Exports", "KPIs"],
+        cover: "/showcases/generated/cmms-analytics-export-api-cover.png",
+        link: "https://github.com/bdsrca",
+        diagram: ["Records", "SQL", "Metrics", "Dashboard", "Export", "Decision"],
+      },
+      {
+        category: "Mobile Workflow",
+        title: "Mobile CMMS PWA",
+        description:
+          "A mobile-first direction for technicians who need work-order updates, asset context, and practical screens on the floor.",
+        buildLabel: "Designed for field use",
+        built:
+          "Explored a mobile PWA layer for work-order updates, asset context, and technician workflows.",
+        valueLabel: "Puts AI near the user task",
+        rdValue:
+          "AI features need a usable product surface where technicians and operators do the work.",
+        fields: [
+          {
+            label: "Problem",
+            text: "Field users need fast context and updates without fighting a desktop-first workflow.",
+          },
+          {
+            label: "Technical Approach",
+            text: "Mobile-first PWA direction, work-order context, asset context, and task-focused screens.",
+          },
+          {
+            label: "Why It Matters",
+            text: "The interface decides whether an AI suggestion reaches the person who can use it.",
+          },
+        ],
+        tags: ["PWA", "Mobile UX", "Work Orders", "Assets"],
+        cover: "/showcases/generated/cmms-mobile-pwa-architecture-cover.png",
+        link: "https://github.com/bdsrca",
+        diagram: ["Technician", "Asset", "Work Order", "Update", "Sync", "Review"],
+      },
+    ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={appliedAiConfig.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{appliedAiConfig.name} - Applied AI Engineer</title>
+  </head>
+  <body>
+    <Header config={appliedAiConfig} navLabels={navLabels} />
+    <section>
+      <Hero config={appliedAiConfig} heroLabels={heroLabels} />
+      <WhyRnd config={appliedAiConfig} sectionLabels={sectionLabels} />
+      <RndRoleFit config={appliedAiConfig} sectionLabels={sectionLabels} />
+      <About config={appliedAiConfig} sectionLabels={sectionLabels} />
+      <WorkingStyle config={appliedAiConfig} sectionLabels={sectionLabels} />
+      <Projects
+        config={appliedAiConfig}
+        showcaseIntro={showcaseIntro}
+        showcaseTiers={showcaseTiers}
+      />
+      <Experience config={appliedAiConfig} sectionLabels={sectionLabels} />
+      <Education config={appliedAiConfig} sectionLabels={sectionLabels} />
+    </section>
+    <Footer config={appliedAiConfig} navLabels={navLabels} />
+  </body>
+</html>

@@ -1,9 +1,23 @@
 ---
 import { siteConfig } from "../config";
 
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const config = Astro.props.config ?? siteConfig;
+const navLabels = Astro.props.navLabels ?? {};
+
+const hasProjects = config.projects && config.projects.length > 0;
+const hasWorkingStyle =
+  config.workingStyle && config.workingStyle.qualities.length > 0;
+const hasExperience = config.experience && config.experience.length > 0;
+const hasEducation = config.education && config.education.length > 0;
+const hasWhyRnd = !!config.whyRnd;
+
+const mobileLinks = [
+  hasWhyRnd && { href: "#why-rnd", label: navLabels.mobileWhy ?? "R&D", icon: "M12 3v18 M3 12h18" },
+  { href: "#about", label: navLabels.mobileAbout ?? "About", icon: "M12 12a4 4 0 1 0 0 -8a4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0" },
+  hasProjects && { href: "#showcases", label: navLabels.mobileCases ?? "Cases", icon: "M4 5h16v14h-16z M8 9h8 M8 13h5" },
+  hasWorkingStyle && { href: "#working-style", label: navLabels.mobileStyle ?? "Style", icon: "M5 12h14 M12 5v14 M7 7l10 10" },
+  hasExperience && { href: "#experience", label: navLabels.mobilePath ?? "Path", icon: "M4 6h16 M4 12h10 M4 18h16" },
+].filter(Boolean);
 ---
 
 <header
@@ -12,22 +26,46 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 >
   <nav class="max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
+      {
+        hasWhyRnd && (
+          <li>
+            <a
+              href="#why-rnd"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              {navLabels.why ?? "Why R&D"}
+            </a>
+          </li>
+        )
+      }
       <li>
         <a
           href="#about"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
-          About
+          {navLabels.about ?? "About"}
         </a>
       </li>
+      {
+        hasWorkingStyle && (
+          <li>
+            <a
+              href="#working-style"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              {navLabels.style ?? "Style"}
+            </a>
+          </li>
+        )
+      }
       {
         hasProjects && (
           <li>
             <a
-              href="#projects"
+              href="#showcases"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
-              Projects
+              {navLabels.showcases ?? "Showcases"}
             </a>
           </li>
         )
@@ -39,7 +77,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               href="#experience"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
-              Experience
+              {navLabels.experience ?? "Experience"}
             </a>
           </li>
         )
@@ -51,7 +89,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               href="#education"
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
-              Education
+              {navLabels.education ?? "Education"}
             </a>
           </li>
         )
@@ -59,6 +97,37 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </ul>
   </nav>
 </header>
+
+<nav
+  class="fixed bottom-3 left-3 right-3 z-50 rounded-lg border border-slate-200 bg-white/90 px-2 py-2 shadow-xl shadow-slate-900/10 backdrop-blur md:hidden"
+  aria-label="Mobile navigation"
+>
+  <ul class="grid grid-cols-5 gap-1">
+    {mobileLinks.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          class="flex flex-col items-center justify-center rounded-md px-2 py-2 text-[11px] font-semibold text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="mb-1 h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d={link.icon} />
+          </svg>
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
 
 <script>
   window.addEventListener("scroll", () => {

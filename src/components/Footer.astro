@@ -1,9 +1,15 @@
 ---
 import { siteConfig } from "../config";
 
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const config = Astro.props.config ?? siteConfig;
+const navLabels = Astro.props.navLabels ?? {};
+
+const hasProjects = config.projects && config.projects.length > 0;
+const hasWorkingStyle =
+  config.workingStyle && config.workingStyle.qualities.length > 0;
+const hasExperience = config.experience && config.experience.length > 0;
+const hasEducation = config.education && config.education.length > 0;
+const hasWhyRnd = !!config.whyRnd;
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
@@ -12,18 +18,28 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
       <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold text-gray-800">
-          {siteConfig.name}
-        </h3>
+        <div class="flex items-center gap-3">
+          {config.avatarImage && (
+            <img
+              src={config.avatarImage}
+              alt=""
+              class="h-10 w-10 rounded-full object-cover ring-1 ring-blue-200"
+              loading="lazy"
+            />
+          )}
+          <h3 class="text-2xl font-bold text-gray-800">
+            {config.name}
+          </h3>
+        </div>
         <p class="text-base text-gray-600">
-          {siteConfig.title}
+          {config.title}
         </p>
         <div class="flex gap-x-6">
           <a
-            href={`mailto:${siteConfig.social.email}`}
+            href={`mailto:${config.social.email}`}
             aria-label="Email"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
+            style={`--accent-color: ${config.accentColor}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,14 +61,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             </svg>
           </a>
           {
-            siteConfig.social.linkedin && (
+            config.social.linkedin && (
               <a
-                href={siteConfig.social.linkedin}
+                href={config.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-                style={`--accent-color: ${siteConfig.accentColor}`}
+                style={`--accent-color: ${config.accentColor}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +93,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             )
           }
           {
-            siteConfig.social.twitter && (
+            config.social.twitter && (
               <a
-                href={siteConfig.social.twitter}
+                href={config.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
                 class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-                style={`--accent-color: ${siteConfig.accentColor}`}
+                style={`--accent-color: ${config.accentColor}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -106,14 +122,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             )
           }
           {
-            siteConfig.social.github && (
+            config.social.github && (
               <a
-                href={siteConfig.social.github}
+                href={config.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-                style={`--accent-color: ${siteConfig.accentColor}`}
+                style={`--accent-color: ${config.accentColor}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,18 +154,38 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 
       <div class="hidden md:block flex flex-col md:items-end gap-4">
         <nav class="flex gap-x-8">
+          {
+            hasWhyRnd && (
+              <a
+                href="#why-rnd"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                {navLabels.why ?? "Why R&D"}
+              </a>
+            )
+          }
           <a
             href="#about"
             class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-            >About</a
+            >{navLabels.about ?? "About"}</a
           >
+          {
+            hasWorkingStyle && (
+              <a
+                href="#working-style"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                {navLabels.style ?? "Style"}
+              </a>
+            )
+          }
           {
             hasProjects && (
               <a
-                href="#projects"
+                href="#showcases"
                 class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
               >
-                Projects
+                {navLabels.showcases ?? "Showcases"}
               </a>
             )
           }
@@ -159,7 +195,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 href="#experience"
                 class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
               >
-                Experience
+                {navLabels.experience ?? "Experience"}
               </a>
             )
           }
@@ -169,14 +205,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 href="#education"
                 class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
               >
-                Education
+                {navLabels.education ?? "Education"}
               </a>
             )
           }
         </nav>
         <p class="text-sm text-gray-500">
           © {new Date().getFullYear()}
-          {siteConfig.name}. All rights reserved.
+          {config.name}. All rights reserved.
         </p>
       </div>
     </div>
